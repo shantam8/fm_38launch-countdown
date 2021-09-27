@@ -6,8 +6,191 @@
           box-sizing: border-box;
 }
 
-body {
-  font-family: 'Red Hat Text', sans-serif;
+h1,
+p {
+  font-family: "Red Hat Text", sans-serif;
   font-weight: 700;
+  text-transform: uppercase;
+}
+
+body {
+  height: 100vh;
+  background-color: #1e1f29;
+  position: relative;
+  padding-top: 8rem;
+}
+
+body::before {
+  position: absolute;
+  content: "";
+  inset: 0;
+  background-image: url("../images/pattern-hills.svg");
+  background-position: bottom, center;
+  background-repeat: no-repeat;
+  background-size: 100vw 35vh;
+  z-index: 5;
+}
+
+body::after {
+  position: absolute;
+  content: "";
+  inset: 0;
+  background-repeat: no-repeat;
+  background-image: url("../images/bg-stars.svg");
+  background-position: center;
+  background-size: auto;
+  z-index: 1;
+}
+
+.bgHelper {
+  text-align: center;
+  width: 320px;
+  height: 300px;
+  margin: 0 auto;
+}
+
+header {
+  margin-bottom: 4rem;
+}
+
+header h1 {
+  color: white;
+  font-size: 1.2rem;
+  letter-spacing: 6px;
+}
+
+p {
+  color: #8486a9;
+  font-size: 0.5rem;
+  letter-spacing: 2px;
+}
+
+.socialMedia {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 5rem;
+  width: 150px;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  z-index: 10;
+}
+
+.timerBox {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (70px)[4];
+      grid-template-columns: repeat(4, 70px);
+  -ms-grid-rows: 1fr, 1fr;
+      grid-template-rows: 1fr, 1fr;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 12px;
+}
+
+.card {
+  width: 70px;
+  height: 70px;
+  position: relative;
+}
+
+.card::before {
+  position: absolute;
+  content: "";
+  background-color: #1e1f29;
+  border-radius: 5px;
+  border: none;
+  height: 10px;
+  width: 10px;
+  right: -5px;
+  top: 30px;
+  z-index: 50;
+}
+
+.card::after {
+  position: absolute;
+  content: "";
+  background-color: #1e1f29;
+  border-radius: 5px;
+  border: none;
+  height: 10px;
+  width: 10px;
+  left: -5px;
+  top: 30px;
+  z-index: 50;
+}
+
+.card .top {
+  position: relative;
+  overflow: hidden;
+  height: 35px;
+  width: 100%;
+  border-bottom: 1px solid black;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.card .top h1 {
+  color: #fb6087;
+  font-size: 2.5rem;
+  -webkit-transform: translateY(8px);
+          transform: translateY(8px);
+}
+
+.card .top .topNew {
+  background-color: #343650;
+  position: absolute;
+  content: "";
+  inset: 0;
+  z-index: 5;
+}
+
+.card .top .topOld {
+  background-color: #343650;
+  position: absolute;
+  content: "";
+  inset: 0;
+  -webkit-transform-origin: bottom;
+          transform-origin: bottom;
+  -webkit-transform: rotateX(10deg);
+          transform: rotateX(10deg);
+  z-index: 10;
+}
+
+.card .bottom {
+  position: relative;
+  overflow: hidden;
+  height: 35px;
+  width: 100%;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.card .bottom h1 {
+  color: #fb6087;
+  font-size: 2.5rem;
+  -webkit-transform: translateY(-27px);
+          transform: translateY(-27px);
+}
+
+.card .bottom .bottomOld {
+  background-color: #3e4160;
+  position: absolute;
+  content: "";
+  inset: 0;
+}
+
+.card .bottom .bottomNew {
+  background-color: #3e4160;
+  position: absolute;
+  content: "";
+  inset: 0;
 }
 /*# sourceMappingURL=main.css.map */

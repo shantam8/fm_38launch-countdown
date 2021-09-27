@@ -1,15 +1,140 @@
-@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@700&display=swap");
 @import "colors";
+@import "mixins";
 
-
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body{
-    font-family: 'Red Hat Text', sans-serif;
-    font-weight: 700;
+h1,
+p {
+  font-family: "Red Hat Text", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
+body {
+  height: 100vh;
+  padding-top: 8rem;
+  position: relative;
+  background-color: $veryDarkBlue;
+
+  &::before {
+    @include bgSettings;
+    background-image: url("../images/pattern-hills.svg");
+    background-position: bottom, center;
+    background-size: 100vw 35vh;
+    z-index: 5;
+  }
+
+  &::after {
+    @include bgSettings;
+    background-image: url("../images/bg-stars.svg");
+    background-position: center;
+    background-size: auto;
+    z-index: 1;
+  }
+}
+
+.bgHelper {
+  width: 320px;
+  height: 300px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+header {
+  margin-bottom: 4rem;
+
+  h1 {
+    font-size: 1.2rem;
+    color: $white;
+    letter-spacing: 6px;
+  }
+}
+
+p {
+  font-size: 0.5rem;
+  color: $grayishBlue;
+  letter-spacing: 2px;
+}
+
+.socialMedia {
+  width: 150px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 5rem;
+  z-index: 10;
+}
+
+.timerBox {
+  display: grid;
+  grid-template-columns: repeat(4, 70px);
+  grid-template-rows: 1fr, 1fr;
+  justify-items: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.card {
+  width: 70px;
+  height: 70px;
+  position: relative;
+
+  &::before {
+    @include cardStances;
+    right: -5px;
+  }
+
+  &::after {
+    @include cardStances;
+    left: -5px;
+  }
+
+  .top {
+    @include cardBoxSetup;
+    border-bottom: 1px solid black;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+
+    h1 {
+      transform: translateY(8px);
+    }
+
+    .topNew {
+      @include cardSetup($darkDesaturatedBlue);
+      z-index: 5;
+    }
+
+    .topOld {
+      @include cardSetup($darkDesaturatedBlue);
+      transform: rotateX(10deg);
+      z-index: 10;
+    }
+  }
+
+  .bottom {
+    @include cardBoxSetup;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+
+    h1 {
+      transform: translateY(-27px);
+    }
+
+    .bottomOld {
+      @include cardSetup(lighten($darkDesaturatedBlue, 5%));
+      z-index: 5;
+    }
+    .bottomNew {
+      @include cardSetup(lighten($darkDesaturatedBlue, 5%));
+      z-index: 10;
+    }
+  }
+}
