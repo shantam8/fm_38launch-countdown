@@ -1,4 +1,47 @@
 @import url("https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@700&display=swap");
+@-webkit-keyframes flipTopCard {
+  from {
+    -webkit-transform: rotate3d(1, 0, 0, 0deg);
+            transform: rotate3d(1, 0, 0, 0deg);
+  }
+  to {
+    -webkit-transform: rotate3d(1, 0, 0, 90deg);
+            transform: rotate3d(1, 0, 0, 90deg);
+  }
+}
+@keyframes flipTopCard {
+  from {
+    -webkit-transform: rotate3d(1, 0, 0, 0deg);
+            transform: rotate3d(1, 0, 0, 0deg);
+  }
+  to {
+    -webkit-transform: rotate3d(1, 0, 0, 90deg);
+            transform: rotate3d(1, 0, 0, 90deg);
+  }
+}
+
+@-webkit-keyframes flipBottomCard {
+  from {
+    -webkit-transform: rotate3d(1, 0, 0, 90deg);
+            transform: rotate3d(1, 0, 0, 90deg);
+  }
+  to {
+    -webkit-transform: rotate3d(1, 0, 0, 0deg);
+            transform: rotate3d(1, 0, 0, 0deg);
+  }
+}
+
+@keyframes flipBottomCard {
+  from {
+    -webkit-transform: rotate3d(1, 0, 0, 90deg);
+            transform: rotate3d(1, 0, 0, 90deg);
+  }
+  to {
+    -webkit-transform: rotate3d(1, 0, 0, 0deg);
+            transform: rotate3d(1, 0, 0, 0deg);
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -13,20 +56,30 @@ p {
   text-transform: uppercase;
 }
 
+.flipTopCard {
+  -webkit-animation: flipTopCard 0.2s;
+          animation: flipTopCard 0.2s;
+}
+
+.flipBottomCard {
+  -webkit-animation: flipBottomCard 0.2s 0.2s;
+          animation: flipBottomCard 0.2s 0.2s;
+}
+
 body {
   height: 100vh;
-  background-color: #1e1f29;
-  position: relative;
   padding-top: 8rem;
+  position: relative;
+  background-color: #1e1f29;
 }
 
 body::before {
   position: absolute;
   content: "";
   inset: 0;
+  background-repeat: no-repeat;
   background-image: url("../images/pattern-hills.svg");
   background-position: bottom, center;
-  background-repeat: no-repeat;
   background-size: 100vw 35vh;
   z-index: 5;
 }
@@ -43,10 +96,10 @@ body::after {
 }
 
 .bgHelper {
-  text-align: center;
   width: 320px;
   height: 300px;
   margin: 0 auto;
+  text-align: center;
 }
 
 header {
@@ -54,22 +107,18 @@ header {
 }
 
 header h1 {
-  color: white;
   font-size: 1.2rem;
+  color: white;
   letter-spacing: 6px;
 }
 
 p {
-  color: #8486a9;
   font-size: 0.5rem;
+  color: #8486a9;
   letter-spacing: 2px;
 }
 
 .socialMedia {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 5rem;
   width: 150px;
   margin: 0 auto;
   display: -webkit-box;
@@ -78,6 +127,10 @@ p {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 5rem;
   z-index: 10;
 }
 
@@ -104,93 +157,121 @@ p {
 .card::before {
   position: absolute;
   content: "";
-  background-color: #1e1f29;
-  border-radius: 5px;
-  border: none;
-  height: 10px;
   width: 10px;
-  right: -5px;
+  height: 10px;
   top: 30px;
+  border: none;
+  border-radius: 5px;
+  background-color: #1e1f29;
   z-index: 50;
+  right: -5px;
 }
 
 .card::after {
   position: absolute;
   content: "";
-  background-color: #1e1f29;
-  border-radius: 5px;
-  border: none;
-  height: 10px;
   width: 10px;
-  left: -5px;
+  height: 10px;
   top: 30px;
+  border: none;
+  border-radius: 5px;
+  background-color: #1e1f29;
   z-index: 50;
+  left: -5px;
 }
 
 .card .top {
+  width: 100%;
+  height: 35px;
   position: relative;
   overflow: hidden;
-  height: 35px;
-  width: 100%;
   border-bottom: 1px solid black;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 }
 
 .card .top h1 {
-  color: #fb6087;
   font-size: 2.5rem;
+  color: #fb6087;
+}
+
+.card .top h1 {
   -webkit-transform: translateY(8px);
           transform: translateY(8px);
 }
 
-.card .top .topNew {
-  background-color: #343650;
+.card .top .topBackCard {
   position: absolute;
   content: "";
   inset: 0;
+  background-color: #343650;
+  border: 1px solid black;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  -webkit-transform-origin: bottom;
+          transform-origin: bottom;
   z-index: 5;
 }
 
-.card .top .topOld {
-  background-color: #343650;
+.card .top .topFlipCard {
   position: absolute;
   content: "";
   inset: 0;
+  background-color: #343650;
+  border: 1px solid black;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
   -webkit-transform-origin: bottom;
           transform-origin: bottom;
-  -webkit-transform: rotateX(10deg);
-          transform: rotateX(10deg);
+  -webkit-transform: rotate3d(1, 0, 0, 90deg);
+          transform: rotate3d(1, 0, 0, 90deg);
   z-index: 10;
 }
 
 .card .bottom {
+  width: 100%;
+  height: 35px;
   position: relative;
   overflow: hidden;
-  height: 35px;
-  width: 100%;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
 }
 
 .card .bottom h1 {
-  color: #fb6087;
   font-size: 2.5rem;
+  color: #fb6087;
+}
+
+.card .bottom h1 {
   -webkit-transform: translateY(-27px);
           transform: translateY(-27px);
 }
 
-.card .bottom .bottomOld {
-  background-color: #3e4160;
+.card .bottom .bottomBackCard {
   position: absolute;
   content: "";
   inset: 0;
+  background-color: #3e4160;
+  border: 1px solid black;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  -webkit-transform-origin: top;
+          transform-origin: top;
+  z-index: 5;
 }
 
-.card .bottom .bottomNew {
-  background-color: #3e4160;
+.card .bottom .bottomFlipCard {
   position: absolute;
   content: "";
   inset: 0;
+  background-color: #3e4160;
+  border: 1px solid black;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  -webkit-transform-origin: top;
+          transform-origin: top;
+  -webkit-transform: rotate3d(1, 0, 0, 90deg);
+          transform: rotate3d(1, 0, 0, 90deg);
+  z-index: 10;
 }
 /*# sourceMappingURL=main.css.map */

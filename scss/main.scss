@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@700&display=swap");
 @import "colors";
+@import "keyframes";
 @import "mixins";
 
 * {
@@ -13,6 +14,14 @@ p {
   font-family: "Red Hat Text", sans-serif;
   font-weight: 700;
   text-transform: uppercase;
+}
+
+.flipTopCard {
+  animation: flipTopCard 0.2s;
+}
+
+.flipBottomCard {
+  animation: flipBottomCard 0.2s 0.2s;
 }
 
 body {
@@ -107,14 +116,15 @@ p {
       transform: translateY(8px);
     }
 
-    .topNew {
-      @include cardSetup($darkDesaturatedBlue);
+    .topBackCard {
+      @include cardSetup($darkDesaturatedBlue, "top");
       z-index: 5;
     }
 
-    .topOld {
-      @include cardSetup($darkDesaturatedBlue);
-      transform: rotateX(10deg);
+    .topFlipCard {
+      @include cardSetup($darkDesaturatedBlue, "top");
+      transform: rotate3d(1, 0, 0, 90deg);
+
       z-index: 10;
     }
   }
@@ -128,12 +138,14 @@ p {
       transform: translateY(-27px);
     }
 
-    .bottomOld {
-      @include cardSetup(lighten($darkDesaturatedBlue, 5%));
+    .bottomBackCard {
+      @include cardSetup(lighten($darkDesaturatedBlue, 5%), "bottom");
       z-index: 5;
     }
-    .bottomNew {
-      @include cardSetup(lighten($darkDesaturatedBlue, 5%));
+    .bottomFlipCard {
+      @include cardSetup(lighten($darkDesaturatedBlue, 5%), "bottom");
+      transform: rotate3d(1, 0, 0, 90deg);
+
       z-index: 10;
     }
   }
