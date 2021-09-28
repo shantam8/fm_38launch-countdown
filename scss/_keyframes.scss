@@ -1,16 +1,17 @@
 @keyframes flipTopCard {
   from {
-    transform: rotate3d(1, 0, 0, 0deg);  }
-
+    transform: rotate3d(1, 0, 0, 0deg);
+  }
   to {
-    transform: rotate3d(1, 0, 0, 90deg);  }
+    transform: rotate3d(1, 0, 0, 90deg);
+  }
 }
 
 @keyframes flipBottomCard {
   from {
     transform: rotate3d(1, 0, 0, 90deg);
   }
-
   to {
-    transform: rotate3d(1, 0, 0, 0deg);  }
+    transform: rotate3d(1, 0, 0, 0deg);
+  }
 }

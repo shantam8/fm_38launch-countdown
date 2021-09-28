@@ -2,6 +2,7 @@ const dayInMs = 86400000;
 const hourInMs = 3600000;
 const minuteInMs = 60000;
 const secondInMs = 1000;
+const animationTimer = 200;
 
 let daysTopBackCard = document.querySelector("#daysBox .topBackCard");
 let daysTopFlipCard = document.querySelector("#daysBox .topFlipCard");
@@ -46,17 +47,15 @@ let secondsToTarget;
 let targetDate = new Date(2021, 08, 29, 12, 00);
 let currentDate;
 
-let target = document.querySelector("#target");
-let now = document.querySelector("#now");
-let differ = document.querySelector("#differ");
-
 function handleTimer() {
+  calculateTheTime();
+  setNumbersOnDisplay();
+
   setInterval(() => {
     setOldNumberState();
     calculateTheTime();
-    setNumbersOnDisplay();
     handleNumberChangedAnimation();
-  }, 2000);
+  }, 1000);
 }
 
 function calculateTheTime() {
@@ -69,6 +68,22 @@ function calculateTheTime() {
   minutesToTarget = Math.floor(dateDifferenceInMs / minuteInMs);
   dateDifferenceInMs = dateDifferenceInMs % minuteInMs;
   secondsToTarget = Math.floor(dateDifferenceInMs / secondInMs);
+  addZeroDigitOnSmallNumber();
+}
+
+function addZeroDigitOnSmallNumber() {
+  if (secondsToTarget < 10) {
+    secondsToTarget = "0" + secondsToTarget;
+  }
+  if (minutesToTarget < 10) {
+    minutesToTarget = "0" + minutesToTarget;
+  }
+  if (hoursToTarget < 10) {
+    hoursToTarget = "0" + hoursToTarget;
+  }
+  if (daysToTarget < 10) {
+    daysToTarget = "0" + daysToTarget;
+  }
 }
 
 function setOldNumberState() {
@@ -92,48 +107,58 @@ function setNumbersOnDisplay() {
 function handleNumberChangedAnimation() {
   if (secondsToTarget != secondsToTargetOld) {
     secondsTopFlipCard.querySelector("h1").innerText = secondsToTargetOld;
-    secondsBottomFlipCard.querySelector("h1").innerText = secondsToTargetOld;
+    secondsTopBackCard.querySelector("h1").innerText = secondsToTarget;
+    secondsBottomFlipCard.querySelector("h1").innerText = secondsToTarget;
     secondsTopFlipCard.classList.add("flipTopCard");
     secondsBottomFlipCard.classList.add("flipBottomCard");
+
     setTimeout(() => {
+      secondsBottomBackCard.querySelector("h1").innerText = secondsToTarget;
       secondsTopFlipCard.classList.remove("flipTopCard");
       secondsBottomFlipCard.classList.remove("flipBottomCard");
-    }, 800);
-
-    console.log("1");
+    }, animationTimer);
   }
+
   if (minutesToTarget != minutesToTargetOld) {
     minutesTopFlipCard.querySelector("h1").innerText = minutesToTargetOld;
-    minutesBottomFlipCard.querySelector("h1").innerText = minutesToTargetOld;
+    minutesTopBackCard.querySelector("h1").innerText = minutesToTarget;
+    minutesBottomFlipCard.querySelector("h1").innerText = minutesToTarget;
     minutesTopFlipCard.classList.add("flipTopCard");
     minutesBottomFlipCard.classList.add("flipBottomCard");
+
     setTimeout(() => {
+      minutesBottomBackCard.querySelector("h1").innerText = minutesToTarget;
       minutesTopFlipCard.classList.remove("flipTopCard");
       minutesBottomFlipCard.classList.remove("flipBottomCard");
-    }, 800);
-    console.log("2");
+    }, animationTimer);
   }
+
   if (hoursToTarget != hoursToTargetOld) {
     hoursTopFlipCard.querySelector("h1").innerText = hoursToTargetOld;
-    hoursBottomFlipCard.querySelector("h1").innerText = hoursToTargetOld;
+    hoursTopBackCard.querySelector("h1").innerText = hoursToTarget;
+    hoursBottomFlipCard.querySelector("h1").innerText = hoursToTarget;
     hoursTopFlipCard.classList.add("flipTopCard");
     hoursBottomFlipCard.classList.add("flipBottomCard");
+
     setTimeout(() => {
+      hoursBottomBackCard.querySelector("h1").innerText = hoursToTarget;
       hoursTopFlipCard.classList.remove("flipTopCard");
       hoursBottomFlipCard.classList.remove("flipBottomCard");
-    }, 800);
-    console.log("3");
+    }, animationTimer);
   }
+
   if (daysToTarget != daysToTargetOld) {
     daysTopFlipCard.querySelector("h1").innerText = daysToTargetOld;
-    daysBottomFlipCard.querySelector("h1").innerText = daysToTargetOld;
+    daysTopBackCard.querySelector("h1").innerText = daysToTarget;
+    daysBottomFlipCard.querySelector("h1").innerText = daysToTarget;
     daysTopFlipCard.classList.add("flipTopCard");
     daysBottomFlipCard.classList.add("flipBottomCard");
+
     setTimeout(() => {
+      daysBottomBackCard.querySelector("h1").innerText = daysToTarget;
       daysTopFlipCard.classList.remove("flipTopCard");
       daysBottomFlipCard.classList.remove("flipBottomCard");
-    }, 800);
-    console.log("4");
+    }, animationTimer);
   }
 }
 

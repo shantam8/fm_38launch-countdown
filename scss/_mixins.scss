@@ -15,6 +15,20 @@
   border-radius: 5px;
   background-color: $veryDarkBlue;
   z-index: 50;
+
+  @media screen and (min-width: 40rem) {
+    width: 12px;
+    height: 12px;
+    top: 48px;
+    border-radius: 6px;
+  }
+
+  @media screen and (min-width: 50rem) {
+    width: 14px;
+    height: 14px;
+    top: 67px;
+    border-radius: 7px;
+  }
 }
 
 @mixin cardBoxSetup {
@@ -27,6 +41,22 @@
     font-size: 2.5rem;
     color: $softRed;
   }
+
+  @media screen and (min-width: 40rem) {
+    height: 55px;
+
+    h1 {
+      font-size: 3rem;
+    }
+  }
+
+  @media screen and (min-width: 50rem) {
+    height: 75px;
+
+    h1 {
+      font-size: 4rem;
+    }
+  }
 }
 
 @mixin cardSetup($bgColor, $position) {
@@ -34,15 +64,13 @@
   content: "";
   inset: 0;
   background-color: $bgColor;
-  border: 1px solid black;
-  
-  @if($position == "top"){
+
+  @if ($position == "top") {
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     transform-origin: bottom;
-
   }
-  @if($position == "bottom"){
+  @if ($position == "bottom") {
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
     transform-origin: top;
