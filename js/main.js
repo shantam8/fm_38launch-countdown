@@ -44,7 +44,7 @@ let hoursToTarget;
 let minutesToTarget;
 let secondsToTarget;
 
-let targetDate = new Date(2021, 10, 15, 20, 00);
+let targetDate = new Date(2022, 04, 30, 10, 00);
 let currentDate;
 
 function handleTimer() {
